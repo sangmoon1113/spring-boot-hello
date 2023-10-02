@@ -5,12 +5,15 @@ import com.springboot.hello.data.dto.ProductDto;
 import com.springboot.hello.data.dto.ProductResponseDto;
 import com.springboot.hello.service.ProductService;
 import com.sun.net.httpserver.HttpsServer;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "제품")
 @RestController
 @RequestMapping("/product")
 public class ProductController {
@@ -22,6 +25,7 @@ public class ProductController {
         this.productService = productService;
     }
 
+    @Operation(summary = "product summary", description = "제품")
     @GetMapping()
     public ResponseEntity<ProductResponseDto> getProdct(Long number) {
         ProductResponseDto productResponsedto = productService.getProduct(number);
